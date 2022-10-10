@@ -1,0 +1,2 @@
+# SC1003 - Introduction to Programming and Computational Thinking
+This repository are my solutions for the SC1003 module in NTU. Currently, only the C programming part are uploaded. Will upload the Python part (lab) soon.
