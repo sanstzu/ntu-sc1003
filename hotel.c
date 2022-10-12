@@ -4,11 +4,11 @@
 #include <ctype.h>
 
 const int MAX = 5;
-
+const int MAX_STR = 100;
 typedef struct {
     int roomID;
     int status;
-    char customerName[20];
+    char customerName[MAX_STR];
 } Room;
 
 
@@ -41,15 +41,16 @@ void listOccupiedRooms(Room arr[]){
 
 void assignRoom(Room arr[]){
     int i, inp;
-    char cs_name[20],*p;
+    char cs_name[MAX_STR],*p;
     if(occupiedCount(arr)==MAX){
         printf("The hotel is full\n");
     } else {
         do {
             printf("Enter a roomID between 1 and 5:\n");
+            scanf("\n");
             scanf("%d",&inp);
-            if(arr[inp-1].status) printf("Occupied! Enter another roomID\n");
-            else if(inp < 1 || inp > MAX) continue;
+            if(inp < 1 || inp > MAX) continue;
+            else if(arr[inp-1].status) printf("Occupied! Enter another roomID\n");
             else break;
         } while(1);
         printf("Enter customer name:\n");
@@ -68,9 +69,10 @@ void removeRoom(Room arr[]){
     } else {
         do {
             printf("Enter a roomID between 1 and 5:\n");
+            scanf("\n");
             scanf("%d",&inp);
-            if(!arr[inp-1].status) printf("Empty! Enter another roomID for removal\n");
-            else if(inp < 1 || inp > MAX) continue;
+            if(inp < 1 || inp > MAX) continue;
+            else if(!arr[inp-1].status) printf("Empty! Enter another roomID for removal\n"); 
             else break;
         } while(1);
         arr[inp-1].status = 0;
@@ -80,7 +82,7 @@ void removeRoom(Room arr[]){
 
 void findCustomer(Room arr[]){
     int i;
-    char inp[20], *p;
+    char inp[MAX_STR], *p;
     printf("Enter customer name:\n");
     scanf("\n");
     fgets(inp, 20, stdin);
@@ -94,7 +96,7 @@ void findCustomer(Room arr[]){
     char csname[20];
 
     for(i = 0 ;i < MAX; i++){
-        char csname[20];
+        char csname[MAX_STR];
         strcpy(csname,arr[i].customerName);
         p = csname;
         while(*p != '\0'){
@@ -119,8 +121,9 @@ int main(){
     for(i=0; i<5; i++) printf("%d: %s\n", i+1, func_names[i]);
     while(1){
         printf("Enter your choice:\n");
+        scanf("\n");
         scanf("%d",&user_input);
-        if(user_input != 5) printf("%s:\n",func_names[user_input-1]);
+        if(user_input != 5 && user_input!=69) printf("%s:\n",func_names[user_input-1]);
         switch(user_input){
             case 1:
                listOccupiedRooms(arr); 
@@ -132,7 +135,6 @@ int main(){
                 removeRoom(arr);
                 break;
             case 4:
-                
                 findCustomer(arr);
                 break;
             case 5:
