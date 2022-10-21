@@ -2,9 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#define MAX_STR 100
 
+//testa
 const int MAX = 5;
-const int MAX_STR = 100;
 typedef struct {
     int roomID;
     int status;
